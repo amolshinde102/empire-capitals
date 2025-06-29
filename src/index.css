@@ -1,0 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a2342 100%);
+    min-height: 100vh;
+  }
+
+  .font-space-grotesk {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl shadow-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 via-purple-500 to-teal-400 bg-clip-text text-transparent;
+  }
+
+  .gold-gradient {
+    @apply bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply glass-card hover:bg-white/10 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105;
+  }
+
+  .scroll-container {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    padding-bottom: 4rem; /* Space for ticker tape */
+  }
+
+  .snap-section {
+    @apply snap-start min-h-screen flex items-center justify-center relative;
+    scroll-margin-top: 4rem;
+    scroll-snap-align: start;
+    margin-bottom: 0; /* Remove any bottom margin that might interfere */
+  }
+
+  .section-content {
+    @apply w-full;
+  }
+
+  /* Enhanced Animation classes with 0.8s timing */
+  .animate-section-enter {
+    animation: sectionEnter 0.8s ease-in-out forwards;
+  }
+
+  .animate-content-up {
+    animation: contentSlideUp 0.8s ease-in-out forwards;
+  }
+
+  .content-hidden {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s ease-in-out;
+  }
+
+  .content-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease-in-out;
+  }
+
+  /* Section background colors */
+  .section-hero {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+  }
+
+  .section-courses {
+    background: linear-gradient(135deg, #164e63 0%, #155e75 50%, #0e7490 100%);
+  }
+
+  .section-trainers {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+  }
+
+  .section-batches {
+    background: linear-gradient(135deg, #7c2d12 0%, #9a3412 50%, #c2410c 100%);
+  }
+
+  .section-testimonials {
+    background: linear-gradient(135deg, #365314 0%, #4d7c0f 50%, #65a30d 100%);
+  }
+
+  .section-gallery {
+    background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #8b5cf6 100%);
+  }
+
+  .section-contact {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%);
+  }
+
+  /* Last section specific adjustments */
+  .snap-section:last-child {
+    padding-bottom: 5rem; /* Extra padding for last section */
+    min-height: calc(100vh - 4rem); /* Adjust height to account for ticker */
+  }
+
+  /* Mobile responsive adjustments for ticker and hero section */
+  @media (max-width: 768px) {
+    .scroll-container {
+      padding-bottom: 4rem;
+    }
+    
+    .snap-section:last-child {
+      padding-bottom: 5rem;
+      min-height: calc(100vh - 4rem);
+    }
+    
+    html {
+      scroll-padding-top: 4rem;
+    }
+
+    .content-hidden {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-in-out;
+    }
+
+    .content-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.8s ease-in-out;
+    }
+
+    /* Mobile hero section adjustments with founder focus */
+    .section-hero {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+    }
+
+    .section-hero .absolute.inset-0 div[style*="background-image"] {
+      background-position: 20% center !important; /* Keep founder visible on mobile */
+      background-size: cover !important;
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .scroll-container {
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: y mandatory;
+    }
+
+    .snap-section {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  /* Enhanced slide up animation with 0.8s timing */
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-in-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out forwards;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(139, 92, 246, 0.3);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 0 80px rgba(139, 92, 246, 0.6);
+  }
+}
+
+@keyframes sectionEnter {
+  from {
+    opacity: 0.2;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contentSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Smooth section transitions */
+@media (prefers-reduced-motion: no-preference) {
+  .snap-section {
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  }
+}
